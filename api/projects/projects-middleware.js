@@ -8,6 +8,22 @@ function logger(req, res, next) {
   next();
 }
 
+async function validateProjectId(req, res, next) {
+  try {
+    const project = await project.get(req.params.id);
+    if (!project) {
+      next({ status: 404, message: "project not found" });
+    } else {
+      req.project = project;
+      next();
+    }
+  } catch (err) {
+    res.status(404).json({
+      message: "no such project",
+    });
+  }
+}
+
 const errorHandling = (err, req, res, next) => {
   // eslint-disable-line
   const status = err.status || 500;
@@ -20,5 +36,6 @@ const errorHandling = (err, req, res, next) => {
 
 module.exports = {
   logger,
+  validateProjectId,
   errorHandling,
 };

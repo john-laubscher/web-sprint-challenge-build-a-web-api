@@ -1,4 +1,3 @@
-// Write your "actions" router here!
 const express = require("express");
 const router = express.Router();
 const Action = require("../actions/actions-model");
@@ -47,7 +46,6 @@ router.delete("/:id", validateActionId, (req, res, next) => {
 });
 
 router.use((err, req, res, next) => {
-  console.log(err);
   res.status(err.status || 500).json({
     customMessage: "something tragic inside posts router happned",
     message: err.message,

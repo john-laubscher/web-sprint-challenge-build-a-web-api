@@ -1,6 +1,3 @@
-// add middlewares here related to projects
-// validate userId?
-
 const Project = require("../projects/projects-model");
 function logger(req, res, next) {
   const timestamp = new Date().toLocaleString();
@@ -26,17 +23,6 @@ async function validateProjectId(req, res, next) {
   }
 }
 
-// function validateCompleted(req, res, next) {
-//   if (req.body.description === true || false) {
-//     next();
-//   } else {
-//     next({
-//       status: 400,
-//       message: "missing completed field",
-//     });
-//   }
-// }
-
 function validatePost(req, res, next) {
   if (!req.body.name || !req.body.description) {
     next({
@@ -49,7 +35,6 @@ function validatePost(req, res, next) {
 }
 
 const errorHandling = (err, req, res, next) => {
-  // eslint-disable-line
   const status = err.status || 500;
   res.status(
     status.json({
@@ -61,7 +46,6 @@ const errorHandling = (err, req, res, next) => {
 module.exports = {
   logger,
   validateProjectId,
-  //   validateCompleted,
   validatePost,
   errorHandling,
 };

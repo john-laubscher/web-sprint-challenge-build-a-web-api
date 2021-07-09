@@ -1,7 +1,6 @@
-// Write your "projects" router here!
 const express = require("express");
 const router = express.Router();
-const { validateProjectId, validatePost, validateCompleted } = require("../projects/projects-middleware");
+const { validateProjectId, validatePost } = require("../projects/projects-middleware");
 const Project = require("../projects/projects-model");
 
 router.get("/", (req, res, next) => {
@@ -43,9 +42,8 @@ router.put("/:id", validateProjectId, validatePost, (req, res, next) => {
 
 router.delete("/:id", validateProjectId, (req, res, next) => {
   Project.remove(req.params.id)
-    .then((result) => {
+    .then(() => {
       const deleteMessage = "Message successfully deleted";
-      console.log(result);
       res.json(deleteMessage);
     })
     .catch(next);

@@ -26,6 +26,17 @@ async function validateProjectId(req, res, next) {
   }
 }
 
+// function validateCompleted(req, res, next) {
+//   if (req.body.description === true || false) {
+//     next();
+//   } else {
+//     next({
+//       status: 400,
+//       message: "missing completed field",
+//     });
+//   }
+// }
+
 function validatePost(req, res, next) {
   if (!req.body.name || !req.body.description) {
     next({
@@ -50,6 +61,7 @@ const errorHandling = (err, req, res, next) => {
 module.exports = {
   logger,
   validateProjectId,
+  //   validateCompleted,
   validatePost,
   errorHandling,
 };

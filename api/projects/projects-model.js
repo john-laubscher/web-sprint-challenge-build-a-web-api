@@ -58,6 +58,3 @@ function getProjectActions(projectId) {
     .where("project_id", projectId)
     .then((actions) => actions.map((action) => mappers.actionToBody(action)));
 }
-
-//"name": "Defeat Lance the dragon trainer and your Rival, Gary",
-// "description": "The Head of the Elite Four is the most powerful trainer in the world, but Gary beat him!",
